@@ -23,6 +23,7 @@ ext {
      * */
     // Feign
     set('springCloudVersion', '2021.0.8')
+    set('commonsLangVersion', '3.12.0')
 }
 
 dependencyManagement {
@@ -39,6 +40,10 @@ dependencies {
 
     // Feign
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // for 'StringUtils'  request body (json ?) -> String 변환
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
 }
 
 tasks.named('bootBuildImage') {
