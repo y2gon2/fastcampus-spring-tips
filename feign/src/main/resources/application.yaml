@@ -1,0 +1,14 @@
+feign:
+  url:
+    prefix: http://localhost:8080/target_server # DemoFeignClient 에서 사용할 url prefix 값
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 3000
+        loggerLevel: NONE
+      demo-client: # DemoFeignClient 에서 사용할 Client 설정 값
+        connectTimeout: 1000
+        readTimeout: 10000
+        loggerLevel: HEADERS # 여기서 설정한 값은 FeignCustomLogger -> Logger.Level logLevel 변수에 할당됨.
+
