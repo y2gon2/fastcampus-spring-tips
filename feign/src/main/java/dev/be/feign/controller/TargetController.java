@@ -1,11 +1,7 @@
 package dev.be.feign.controller;
 
 import dev.be.feign.common.dto.BaseResponseInfo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/target_server")
@@ -23,6 +19,14 @@ public class TargetController {
                 .name(name)
                 .age(age)
                 .build();
+    }
+
+    @PostMapping("/post")
+    public BaseResponseInfo demoPost(
+            @RequestHeader("CustomHeaderName") String header,
+            @RequestBody BaseResponseInfo body
+    ) {
+        return body;
     }
 
 }

@@ -1,5 +1,6 @@
 package dev.be.feign.service;
 
+import dev.be.feign.common.dto.BaseRequestInfo;
 import dev.be.feign.common.dto.BaseResponseInfo;
 import dev.be.feign.feign.client.DemoFeignClient;
 import lombok.RequiredArgsConstructor;
@@ -28,4 +29,22 @@ public class DemoService {
         return "Success Fiegn";
     }
 
+    public String post() {
+        BaseRequestInfo baseRequestInfo = BaseRequestInfo
+                .builder()
+                .name("customName")
+                .age(2L)
+                .build();
+
+        ResponseEntity<BaseResponseInfo> response = demoFeignClient.callPost(
+                "CustomHeader",
+                baseRequestInfo
+        );
+
+        log.info("Name : " + response.getBody().getName());
+        log.info("Age : " + response.getBody().getAge());
+        log.info("Header : " + response.getHeaders());
+
+        return "Success Fiegn POST";
+    }
 }
