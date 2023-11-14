@@ -45,6 +45,12 @@ public class DemoService {
         log.info("Age : " + response.getBody().getAge());
         log.info("Header : " + response.getHeaders());
 
-        return "Success Fiegn POST";
+        return "Success Feign POST";
+    }
+
+    public String errorDecoder() {
+        demoFeignClient.callErrorDecoder();
+
+        return "Feign ERROR";
     }
 }

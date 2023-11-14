@@ -1,6 +1,8 @@
 package dev.be.feign.controller;
 
 import dev.be.feign.common.dto.BaseResponseInfo;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +21,8 @@ public class TargetController {
                 .name(name)
                 .age(age)
                 .build();
+
+        // Client method 에서는 BaseResponseInfo 를 ResponseEntity 로 wrapping 해서 받음.
     }
 
     @PostMapping("/post")
@@ -27,6 +31,11 @@ public class TargetController {
             @RequestBody BaseResponseInfo body
     ) {
         return body;
+    }
+
+    @GetMapping("/error")
+    public ResponseEntity<BaseResponseInfo> demoErrorDecoder() {
+        return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 }
